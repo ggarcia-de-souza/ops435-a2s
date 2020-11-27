@@ -14,7 +14,7 @@ will be reported and appropriate action will be taken.
 '''
 
 env.user = "student"
-env.password = "9[NfPd8+vw"
+
 
 
 def addUser(name):
