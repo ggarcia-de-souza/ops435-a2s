@@ -1,0 +1,83 @@
+####Adding an user
+
+
+[ggarcia-de-souza@mtrx-node05pd a2]$ fab -f a2s_ggarcia-de-souza.py --host=myvmlab.senecacollege.ca --port=7499 addUser:ops435
+[myvmlab.senecacollege.ca] Executing task 'addUser'
+[myvmlab.senecacollege.ca] sudo: useradd -m ops435
+[myvmlab.senecacollege.ca] out: sudo password:
+[myvmlab.senecacollege.ca] out: Creating mailbox file: File exists
+[myvmlab.senecacollege.ca] out:
+
+[myvmlab.senecacollege.ca] sudo: echo "password" | passwd ops435 --stdin
+[myvmlab.senecacollege.ca] out: sudo password:
+[myvmlab.senecacollege.ca] out: Changing password for user ops435.
+[myvmlab.senecacollege.ca] out: passwd: all authentication tokens updated successfully.
+[myvmlab.senecacollege.ca] out:
+
+
+Done.
+Disconnecting from myvmlab.senecacollege.ca:7499... done.
+
+
+
+####Adding an user that already exists
+
+[ggarcia-de-souza@mtrx-node05pd a2]$ fab -f a2s_ggarcia-de-souza.py --host=myvmlab.senecacollege.ca --port=7499 addUser:ops435
+[myvmlab.senecacollege.ca] Executing task 'addUser'
+[myvmlab.senecacollege.ca] sudo: useradd -m ops435
+[myvmlab.senecacollege.ca] out: sudo password:
+[myvmlab.senecacollege.ca] out: useradd: user 'ops435' already exists
+[myvmlab.senecacollege.ca] out:
+
+
+Fatal error: sudo() received nonzero return code 9 while executing!
+
+Requested: useradd -m ops435
+Executed: sudo -S -p 'sudo password:'  /bin/bash -l -c "useradd -m ops435"
+
+Aborting.
+Disconnecting from myvmlab.senecacollege.ca:7499... done.
+
+
+
+####Finding an user that exists
+
+[ggarcia-de-souza@mtrx-node05pd a2]$ fab -f a2s_ggarcia-de-souza.py --host=myvmlab.senecacollege.ca --port=7499 findUser:ops435
+[myvmlab.senecacollege.ca] Executing task 'findUser'
+[myvmlab.senecacollege.ca] download: <fdopen> <- /etc/passwd
+Found user ops435 on the system.
+
+Done.
+Disconnecting from myvmlab.senecacollege.ca:7499... done.
+
+
+####Finding an user that does not exist
+
+[ggarcia-de-souza@mtrx-node05pd a2]$ fab -f a2s_ggarcia-de-souza.py --host=myvmlab.senecacollege.ca --port=7499 findUser:seneca
+[myvmlab.senecacollege.ca] Executing task 'findUser'
+[myvmlab.senecacollege.ca] download: <fdopen> <- /etc/passwd
+User seneca is not on the system.
+
+Done.
+Disconnecting from myvmlab.senecacollege.ca:7499... done.
+
+
+####Finding all normal users
+
+[ggarcia-de-souza@mtrx-node05pd a2]$ fab -f a2s_ggarcia-de-souza.py --host=myvmlab.senecacollege.ca --port=7499 listUser
+[myvmlab.senecacollege.ca] Executing task 'listUser'
+[myvmlab.senecacollege.ca] download: <fdopen> <- /etc/passwd
+['root', 'itsadmin', 'student', 'instructor', 'ops435p', 'ops435']
+
+Done.
+Disconnecting from myvmlab.senecacollege.ca:7499... done.
+
+####Finding all system users
+
+[ggarcia-de-souza@mtrx-node05pd a2]$ fab -f a2s_ggarcia-de-souza.py --host=myvmlab.senecacollege.ca --port=7499 listSysUser
+[myvmlab.senecacollege.ca] Executing task 'listSysUser'
+[myvmlab.senecacollege.ca] download: <fdopen> <- /etc/passwd
+['bin', 'daemon', 'adm', 'lp', 'mail', 'operator', 'games', 'ftp', 'nobody', 'systemd-network', 'dbus', 'polkitd', 'sshd', 'postfix', 'chrony', 'ntp']
+
+Done.
+Disconnecting from myvmlab.senecacollege.ca:7499... done.

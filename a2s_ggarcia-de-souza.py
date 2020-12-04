@@ -20,7 +20,7 @@ env.user = "student"
 def addUser(name):
     '''add a user with given user name to remote system'''
     
-
+    #Creating an user and adding a temporary password
     sudo(('useradd -m {}').format(name))
     sudo(('echo "password" | passwd {} --stdin').format(name))
 
@@ -41,6 +41,7 @@ def listUser():
         
         users = file_temp.readlines()
 
+	#Normal users will have /bin/bash at the end of the line in the /etc/passwd file
         for item in users:
             if "/bin/bash" in item:
 
@@ -63,7 +64,8 @@ def listSysUser():
 
 
         users = file_temp.readlines()
-
+	
+	#System users will have no login at the end of the line in the /etc/passwd file
         for item in users:
             if "nologin" in item:
 
@@ -83,7 +85,7 @@ def findUser(name):
 
         users = file_temp.readlines()
                
- 
+ 	#The fields in the /etc/passwd file are divided by ":"
         for item in users:
             username = item.split(":")[0]
 

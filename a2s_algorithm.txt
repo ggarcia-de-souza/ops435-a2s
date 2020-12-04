@@ -14,10 +14,11 @@ FUNCTIONS:
 
 1.2 processing
     
-    1.2.1. I will need to check if user exists already
-    1.2.2. If the user exists, the script will stop
-    1.2.3. If the user doesn not exist, I will need to execute the useradd command plus the name of the user that has been provided
-    1.2.4. I will need to type the password for the student account to complete the command
+
+    1.2.1. I will need to execute the useradd command plus the name of the user that has been provided
+    1.2.2. I will need to type the password for the student account to complete the command
+    1.2.3. I will create a generic password for the account by using the echo command that will pipe into the passwd command
+    1.2.4. If the user already exists, the useradd command will automatically fail    
 
 1.3 output
 
@@ -32,8 +33,10 @@ FUNCTIONS:
 
 2.2 processing
 
-    2.2.1. I will need to access the /etc/passwd file
-    2.2.2. Once inside the file, I will have to search for the name that has been provided for the user    
+    2.2.1. I will need to access the /etc/passwd file, and save it as a temporary file on my local machine to access its contents
+    2.2.2. I will need to go over every single line until using a for loop until I find the user
+    2.2.3. I will split the line at the ":" and discard the rest since I only need the first field
+    2.2.4. Once the user has been found, I will break out of the loop   
 
 2.3 output
 
@@ -50,9 +53,9 @@ FUNCTIONS:
 
 3.2 processing
 
-    3.2.1. I will need to access the /etc/passwd file
-    3.2.2. Once inside the file, I will have to search for "nologin" in order to find out the system users   
-    3.2.3. The users will be appended inside of a list
+    3.2.1. I will need to access the /etc/passwd file, and save it as a temporary file on my local machine to access its contents
+    3.2.2. Once inside the file, I will have to search every line that has "nologin"   
+    3.2.3. The lines that have "nologin" will be split at the ":" and saved inside of a list
 3.3 output
 
     3.3.1. A list with the system users will be returned 
@@ -67,9 +70,9 @@ FUNCTIONS:
 
 4.2 processing
 
-    4.2.1. I will need to access the /etc/passwd file
-    4.2.2. Once inside the file, I will have to search for "/bin/bash" in order to find out the normal users   
-    4.2.3. The users will be appended inside of a list
+    4.2.1. I will need to access the /etc/passwd file, and save it as a temporary file on my local machine to access its contents
+    4.2.2. Once inside the file, I will have to search every line that has "/bin/bash"
+    4.2.3. The lines that have "/bin/bash" will be split at the ":" and saved inside of a list   
 
 4.3 output
 
